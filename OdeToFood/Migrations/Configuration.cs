@@ -1,22 +1,25 @@
+using System.Collections.Generic;
+using System.Web.Security;
+using OdeToFood.Models;
+using WebMatrix.WebData;
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
+
+
 namespace OdeToFood.Migrations
 {
-    using OdeToFood.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using System.Web.Security;
-    using WebMatrix.WebData;
+   
 
-    internal sealed class Configuration : DbMigrationsConfiguration<OdeToFood.Models.OdeToFoodDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<OdeToFoodDb>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(OdeToFood.Models.OdeToFoodDb context)
+        protected override void Seed(OdeToFoodDb context)
         {
             context.Restaurants.AddOrUpdate(r => r.Name,
                new Restaurant { Name = "Sabatino's", City = "Baltimore", Country = "USA" },
@@ -32,11 +35,11 @@ namespace OdeToFood.Migrations
                    }
                });
 
-            for (int i = 0; i < 1000; i++)
-            {
-                context.Restaurants.AddOrUpdate(r => r.Name,
-                    new Restaurant { Name = i.ToString(), City = "Nowhere", Country = "USA" });
-            }
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    context.Restaurants.AddOrUpdate(r => r.Name,
+            //        new Restaurant { Name = i.ToString(), City = "Nowhere", Country = "USA" });
+            //}
 
             SeedMembership();
         }
@@ -60,7 +63,7 @@ namespace OdeToFood.Migrations
             if (!roles.GetRolesForUser("sallen").Contains("Admin"))
             {
                 roles.AddUsersToRoles(new[] { "sallen" }, new[] { "admin" });
-            } 
+            }
         }
     }
 }

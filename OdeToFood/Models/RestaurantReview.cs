@@ -6,7 +6,7 @@ using System.Web;
 
 namespace OdeToFood.Models
 {
-    public class RestaurantReview : IValidatableObject
+    public class RestaurantReview 
     {
         public int Id { get; set; }   
     
@@ -21,14 +21,16 @@ namespace OdeToFood.Models
         [Display(Name="User Name")]
         [DisplayFormat(NullDisplayText="anonymous")]
         public string ReviewerName { get; set; }
-        public int RestaurantId { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (Rating < 2 && ReviewerName.ToLower().StartsWith("scott"))
-            {
-                yield return new ValidationResult("Sorry, Scott, you can't do this");
-            }
-        }
+        public int RestaurantId { get; set; }
+        public Restaurant Restaurant { get; set; }
+
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if (Rating < 2 && ReviewerName.ToLower().StartsWith("scott"))
+        //    {
+        //        yield return new ValidationResult("Sorry, Scott, you can't do this");
+        //    }
+        //}
     }
 }

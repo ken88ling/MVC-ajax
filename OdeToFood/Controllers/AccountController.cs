@@ -279,7 +279,7 @@ namespace OdeToFood.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("UserName", "User name already exists. Please enter a different user name.");
+                        ModelState.AddModelError("UserName", @"User name already exists. Please enter a different user name.");
                     }
                 }
             }
